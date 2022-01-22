@@ -137,6 +137,10 @@ NETWORK_SCANNER () {
 	echo -e ${BLUE}"[NETWORK SCANNER]" ${RED}"Naabu installation in progress ...";
 	GO111MODULE=on go get -v github.com/projectdiscovery/naabu/v2/cmd/naabu > /dev/null 2>&1 && ln -s ~/go/bin/naabu /usr/local/bin/;
 	echo -e ${BLUE}"[NETWORK SCANNER]" ${GREEN}"Naabu installation is done !"; echo "";
+	#RustScan
+	echo -e ${BLUE}"[NETWORK SCANNER]" ${RED}"RustScan installation in progress ...";
+	cd /tmp && wget https://github.com/RustScan/RustScan/releases/download/${RUSTSCANVER}/rustscan_${RUSTSCANVER}_amd64.deb > /dev/null 2>&1 && dpkg --install rustscan_${RUSTSCANVER}_amd64.deb > /dev/null 2>&1;
+	echo -e ${BLUE}"[NETWORK SCANNER]" ${GREEN}"RustScan installation is done !"; echo "";
 }
 
 HTTP_PARAMETER () {
@@ -302,6 +306,12 @@ GIT_HUNTING() {
 	echo -e ${BLUE}"[GIT HUNTING]" ${GREEN}"GitTools installation is done !"; echo "";
 }
 
+CORS_MISCONFIG() {
+	echo -e ${BLUE}"[CORS MISCONFIG]" ${RED}"Corsy installation in progess ...";
+	cd $TOOLS_DIRECTORY && git clone https://github.com/s0md3v/Corsy.git > /dev/null 2>&1 && cd Corsy && pip3 install -r requirements.txt > /dev/null 2>&1;	
+	echo -e ${BLUE}"[CORS MISCONFIG]" ${GREEN}"Corsy installation is done !"; echo "";
+}
+
 
 SENSITIVE_FINDING() {
 	#DumpsterDiver
@@ -361,4 +371,4 @@ USEFUL_TOOLS () {
 	echo -e ${BLUE}"[USEFUL TOOLS]" ${GREEN}"Uro installation is done !" ${RESTORE}; echo "";
 }
 
-ENVIRONMENT && SUBDOMAINS_ENUMERATION && DNS_RESOLVER && VISUAL_RECON && HTTP_PROBE && WEB_CRAWLING && NETWORK_SCANNER && HTTP_PARAMETER && FUZZING_TOOLS && LFI_TOOLS && SSRF_TOOLS && SSTI_TOOLS && API_TOOLS && WORDLISTS && VULNS_XSS && VULNS_SQLI && CMS_SCANNER && VULNS_SCANNER && JS_HUNTING && GIT_HUNTING  && SENSITIVE_FINDING && USEFUL_TOOLS;
+ENVIRONMENT && SUBDOMAINS_ENUMERATION && DNS_RESOLVER && VISUAL_RECON && HTTP_PROBE && WEB_CRAWLING && NETWORK_SCANNER && HTTP_PARAMETER && FUZZING_TOOLS && LFI_TOOLS && SSRF_TOOLS && SSTI_TOOLS && API_TOOLS && WORDLISTS && VULNS_XSS && VULNS_SQLI && CMS_SCANNER && VULNS_SCANNER && JS_HUNTING && GIT_HUNTING  && CORS_MISCONFIG && SENSITIVE_FINDING && USEFUL_TOOLS;
